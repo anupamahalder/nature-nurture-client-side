@@ -8,7 +8,11 @@ export default {
     themes: ["emerald"],
   },
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        dancingScript: ['Dancing Script', 'cursive'],
+      }
+    },
   },
   plugins: [require("daisyui")],
 }
