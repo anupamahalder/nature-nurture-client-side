@@ -14,7 +14,7 @@ const Navbar = () => {
             <h1 className='font-extrabold ml-2 text-3xl font-dancingScript'>Nature Nurture</h1>
         </div>
         <div className="flex-none hidden lg:block">
-            <div className="menu menu-horizontal gap-6 text-xl font-agbalumo uppercase">
+            <div className="menu menu-horizontal gap-6 text-xl font-satisfy uppercase">
             {/* Navbar menu content here */}
             <NavLink to='/' 
             className={({ isActive, isPending }) =>

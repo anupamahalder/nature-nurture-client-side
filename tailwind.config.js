@@ -11,7 +11,7 @@ export default {
     extend: {
       fontFamily: {
         dancingScript: ['Dancing Script', 'cursive'],
-        agbalumo: ['Agbalumo'],
+        satisfy: ['Satisfy', 'cursive'],
       }
     },
   },
