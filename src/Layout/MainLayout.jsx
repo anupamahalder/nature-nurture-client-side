@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 const MainLayout = ({children}) => {
     return (
         <div className='max-w-[1300px] mx-auto'>
-            <div className="drawer text-[#466D21] bg-fixed">
+            <div className="drawer text-[#003C25] bg-fixed">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}

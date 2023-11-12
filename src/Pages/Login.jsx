@@ -1,5 +1,8 @@
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+    // call the custom hook to get all authcontext's info
+    const {user, signInUser, createUser} = useAuth;
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
