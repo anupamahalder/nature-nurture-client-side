@@ -3,6 +3,8 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import AdminLayout from "../Layout/AdminLayout";
+import AddServices from "../Pages/AddServices/AddServices";
 
 const MyRoute = createBrowserRouter([
     {
@@ -30,6 +32,16 @@ const MyRoute = createBrowserRouter([
     {
         path: '/register',
         element: <Register></Register>
+    },
+    {
+        path: '/admin',
+        element: <AdminLayout></AdminLayout>,
+        children: [
+            {
+                path: 'addservices',
+                element: <AddServices></AddServices>
+            }
+        ]
     }
 ])
 
