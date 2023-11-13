@@ -1,6 +1,14 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+    const {user, logOut} = useAuth();
+    // create a function to signout 
+    const hanldeSignOut = () =>{
+        logOut()
+        .then(res => console.log(res.user))
+        .catch(err => console.log(err.message))
+    }
     return (
         <div className="w-full navbar sticky bg-white top-0">
         <div className="flex-none lg:hidden">
@@ -28,14 +36,15 @@ const Navbar = () => {
             className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-900" : ""}
             >Contact Us</NavLink>
-            <NavLink to='/login'
-            className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-900" : ""}
-            >Login</NavLink>
-            <NavLink to='/register'
-            className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-900" : ""}
-            >Register</NavLink>
+            {
+                user ? <button onClick={hanldeSignOut}
+                className="uppercase"
+                >SignOut</button>:
+                <NavLink to='/login'
+                className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-red-900" : ""}
+                >Login</NavLink>
+            }
             </div>
         </div>
         </div>

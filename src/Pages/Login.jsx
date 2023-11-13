@@ -1,18 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
 import { useState } from "react";
 const Login = () => {
     // call the custom hook to get all authcontext's info
-    const {user, signInUser, createUser, googleLogin} = useAuth();
+    const {user, signInUser, googleLogin} = useAuth();
      // declare a state to track the visibility of password 
      const [isVisible, setIsVisible] = useState(false);
+    //  declare states to store email and password 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
+    // create function to handle login form 
+    const handleLogin = (e) =>{
+        e.preventDefault();
+        signInUser(email,password)
+        .then(res => console.log(res.user))
+        .catch(err => console.log(err.message))
+    }
     //  create a function to handle google login 
     const handleGoogleLogin = () =>{
         googleLogin()
-        .then(res => console.log(res.user))
+        .then(res => {
+            console.log(res.user)
+            navigate('/');
+        })
         .catch(err => console.log(err.message));
     }
     return (
@@ -23,18 +37,20 @@ const Login = () => {
                 <h1 className="text-5xl font-bold text-[#003C25]">Login Now!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                <form className="card-body">
+                <form onSubmit={handleLogin}
+                 className="card-body">
                     <div className="form-control">
                     <label className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <input type="email" placeholder="email" className="input input-bordered" required />
+                    <input onBlur={(e)=>setEmail(e.target.value)}
+                     type="email" placeholder="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control relative">
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
-                    <input
+                    <input onBlur={(e) => setPassword(e.target.value)}
                      type={ isVisible ? 'text': 'password'}
                      placeholder="password" className="input input-bordered" required />
                      <div onClick={()=>setIsVisible(!isVisible)} 
@@ -49,7 +65,7 @@ const Login = () => {
                     </label>
                     </div>
                     <div className="form-control mt-6">
-                    <button className="btn btn-primary">Login</button>
+                    <button type="submit" className="btn btn-primary">Login</button>
                     <button onClick={handleGoogleLogin}
                      className="btn btn-primary mt-2 text-white bg-green-800">Login with Google</button>
                     </div>
