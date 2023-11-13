@@ -5,9 +5,16 @@ import {IoEyeSharp} from 'react-icons/io5';
 import { useState } from "react";
 const Login = () => {
     // call the custom hook to get all authcontext's info
-    const {user, signInUser, createUser} = useAuth;
+    const {user, signInUser, createUser, googleLogin} = useAuth();
      // declare a state to track the visibility of password 
      const [isVisible, setIsVisible] = useState(false);
+
+    //  create a function to handle google login 
+    const handleGoogleLogin = () =>{
+        googleLogin()
+        .then(res => console.log(res.user))
+        .catch(err => console.log(err.message));
+    }
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -43,7 +50,8 @@ const Login = () => {
                     </div>
                     <div className="form-control mt-6">
                     <button className="btn btn-primary">Login</button>
-                    <button className="btn btn-primary mt-2 text-white bg-green-800">Login with Google</button>
+                    <button onClick={handleGoogleLogin}
+                     className="btn btn-primary mt-2 text-white bg-green-800">Login with Google</button>
                     </div>
                 </form>
                 </div>

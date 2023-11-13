@@ -2,9 +2,14 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase.config";
 import PropTypes from 'prop-types';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
 
 // create a context 
 export const AuthContext = createContext();
+// create google provider 
+const googleProvider = new GoogleAuthProvider();
+
 const AuthProvider = ({children}) => {
     // declare a state to store the user info 
     const [user, setUser] = useState(null);
@@ -21,6 +26,10 @@ const AuthProvider = ({children}) => {
         setIsLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
+    // google login 
+    const googleLogin =()=> {
+        return signInWithPopup(auth, googleProvider);
+    }
     // checking user persistency this is a side effect so we need useEffect to handle this
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth, (currentUser)=>{
@@ -34,7 +43,7 @@ const AuthProvider = ({children}) => {
     },[]);
 
     const authInfo={
-        user, createUser, isLoading, signInUser,
+        user, createUser, isLoading, signInUser,googleLogin,
     }
     return (
         <AuthContext.Provider value={authInfo}>
