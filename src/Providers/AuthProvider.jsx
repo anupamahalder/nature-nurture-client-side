@@ -29,7 +29,7 @@ const AuthProvider = ({children}) => {
             // set isLoading false 
             setIsLoading(false);
         })
-        // to avoid memory leak and clean up 
+        // to avoid memory leak and clean up function 
         return ()=> unSubscribe();
     },[]);
 
