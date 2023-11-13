@@ -28,10 +28,10 @@ const Navbar = () => {
             className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-900" : ""}
             >Home</NavLink>
-            <NavLink to='/about'
+            <NavLink to='/bookings'
             className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-900" : ""}
-            >About</NavLink>
+            >Bookings</NavLink>
             <NavLink to='/contact'
             className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-900" : ""}
