@@ -6,7 +6,7 @@ import {IoEyeSharp} from 'react-icons/io5';
 
 const Register = () => {
     // call the custom hook to get all authcontext's info
-    const {user, signInUser, createUser} = useAuth;
+    const {user,createUser} = useAuth();
     // declare a state to track the visibility of password 
     const [isVisible, setIsVisible] = useState(false);
     // declare states to control form 
@@ -15,10 +15,15 @@ const Register = () => {
     const [password, setPassword] = useState('');
 
     // create function to handle register 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-        
-        console.log(name, email, password);
+        try{
+            await createUser(email, password);
+            console.log('created', user);
+        }
+        catch(err){
+            console.log(err.message);
+        }
     }
     return (
         <div>
