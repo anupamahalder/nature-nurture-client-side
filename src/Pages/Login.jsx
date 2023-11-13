@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 const Login = () => {
     // call the custom hook to get all authcontext's info
     const {user, signInUser, googleLogin} = useAuth();
@@ -16,18 +17,30 @@ const Login = () => {
     // create function to handle login form 
     const handleLogin = (e) =>{
         e.preventDefault();
+        const toastId = toast.loading('Logging in');
         signInUser(email,password)
-        .then(res => console.log(res.user))
-        .catch(err => console.log(err.message))
+        .then(res => {
+            console.log(res.user);
+            toast.success('Logged in successful!', {id: toastId});
+        })
+        .catch(err => {
+            console.log(err.message);
+            toast.error(err.message, {id: toastId});
+        })
     }
     //  create a function to handle google login 
     const handleGoogleLogin = () =>{
+        const toastId = toast.loading('Logging in...');
         googleLogin()
         .then(res => {
-            console.log(res.user)
+            console.log(res.user);
+            toast.success('Logged in successful!', {id: toastId});
             navigate('/');
         })
-        .catch(err => console.log(err.message));
+        .catch(err => {
+            console.log(err.message);
+            toast.error(err.message, {id: toastId});
+        });
     }
     return (
         <div>
