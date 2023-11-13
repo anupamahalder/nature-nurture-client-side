@@ -1,3 +1,4 @@
+import ImageGallery from "../../components/ImageGallery";
 
 const Home = () => {
     return (
@@ -17,6 +18,11 @@ const Home = () => {
                         <button className="btn btn-outline hover:bg-white hover:text-black outline-4 text-xl text-white">Book Now</button>
                     </div>
                  </div>
+            </div>
+            {/* image showcase  */}
+            <div className="my-40 px-10">
+                <h1 className="text-center text-4xl font-bold font-satisfy my-10">Green Harmony by Our Team</h1>
+                <ImageGallery></ImageGallery>
             </div>
         </div>
     );
