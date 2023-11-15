@@ -18,7 +18,7 @@ const Services = ({service}) => {
                 <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit h-[70px] overflow-hidden">
                 {description}
                 </p>
-                <p className='font-bold p-2'>Price: ${price}</p>
+                <p className='font-bold p-2'>Price: ₹ {price}</p>
             </div>
             <div className="p-6 pt-0 mx-auto">
                 <button

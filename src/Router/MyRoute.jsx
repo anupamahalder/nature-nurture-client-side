@@ -7,6 +7,7 @@ import AdminLayout from "../Layout/AdminLayout";
 import AddServices from "../Pages/AddServices/AddServices";
 import PrivateRoute from "./PrivateRoute";
 import Bookings from "../Pages/Bookings/Bookings";
+import ServiceDetail from "../Pages/Services/ServiceDetail";
 
 const MyRoute = createBrowserRouter([
     {
@@ -24,6 +25,11 @@ const MyRoute = createBrowserRouter([
             {
                 path: 'contact',
                 element: <h1>Contact us</h1>
+            },
+            {
+                path: 'service/:id',
+                element: <PrivateRoute><ServiceDetail></ServiceDetail></PrivateRoute>,
+                loader: ({params})=>fetch(`http://localhost:5000/api/v1/service-detail/${params.id}`)
             }
         ]
     },

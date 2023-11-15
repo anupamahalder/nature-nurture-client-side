@@ -12,7 +12,7 @@ const Banner = () => {
                     <p className="text-2xl md:text-4xl w-3/4 mt-6 pl-2 italic text-white drop-shadow-lg font-satisfy">Welcome to a place where your outdoor oasis is our canvas, and every plant is a masterpiece.</p>
                     </div>
                     <div className="mt-4 md:mt-10 ml-4 md:ml-16">
-                        <button className="btn md:text-xl hover:text-black hover:bg-white mr-2">Check Services</button>
+                        <button className="btn md:text-xl hover:bg-green-300 hover:text-black mr-2">Check Services</button>
                         <button className="btn btn-outline hover:bg-white hover:text-black outline-4 md:text-xl text-white">Book Now</button>
                     </div>
                     </div>
