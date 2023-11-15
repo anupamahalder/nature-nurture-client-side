@@ -20,9 +20,13 @@ const Home = () => {
                  </div>
             </div>
             {/* image showcase  */}
-            <div className="my-40 px-10">
+            <div className="md:my-40 px-10">
                 <h1 className="text-center text-4xl font-bold font-satisfy my-10">Green Harmony by Our Team</h1>
                 <ImageGallery></ImageGallery>
+            </div>
+            {/* service section  */}
+            <div className="md:my-10">
+                <h1 className="text-center text-4xl font-bold font-satisfy my-10">Nature Nurture Services</h1>
             </div>
         </div>
     );

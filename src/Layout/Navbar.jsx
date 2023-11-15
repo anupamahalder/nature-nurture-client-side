@@ -1,13 +1,33 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
     const {user, logOut} = useAuth();
     // create a function to signout 
     const hanldeSignOut = () =>{
-        logOut()
-        .then(res => console.log(res.user))
-        .catch(err => console.log(err.message))
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to logout?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Log Out!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                .then(res => {
+                    console.log(res.user);
+                    Swal.fire({
+                        title: "Logged Out!",
+                        text: "You have successfully logged out!.",
+                        icon: "success"
+                      });
+                })
+                .catch(err => console.log(err.message))
+            }
+          });
     }
     return (
         <div className="w-full navbar bg-white">
@@ -22,7 +42,7 @@ const Navbar = () => {
             <h1 className='font-extrabold ml-2 text-3xl font-dancingScript'>Nature Nurture</h1>
         </div>
         <div className="flex-none hidden lg:block">
-            <div className="menu menu-horizontal gap-6 text-xl font-satisfy uppercase">
+            <div className="menu menu-horizontal gap-6 text-xl justify-center items-center font-satisfy uppercase">
             {/* Navbar menu content here */}
             <NavLink to='/' 
             className={({ isActive, isPending }) =>
@@ -37,9 +57,15 @@ const Navbar = () => {
             isPending ? "pending" : isActive ? "text-red-900" : ""}
             >Contact Us</NavLink>
             {
-                user ? <button onClick={hanldeSignOut}
+                user ? 
+                <>
+                <button onClick={hanldeSignOut}
                 className="uppercase"
-                >SignOut</button>:
+                >SignOut</button>
+                {
+                    user?.photoURL && <img className="w-10 rounded-full" src={user?.photoURL}></img>
+                }</>
+                :
                 <NavLink to='/login'
                 className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-red-900" : ""}
