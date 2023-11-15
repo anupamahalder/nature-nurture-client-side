@@ -7,11 +7,11 @@ const Banner = () => {
                  alt="" />
                 <div className="absolute flex justify-center items-center top-0 h-full w-full bg-gradient-to-r from-[#151515] to-[rgba(21,21,21,0)100%]">
                     <div className="mx-auto justify-center">
-                    <div className="text-white pl-2 md:pl-10">
+                    <div className="text-white pl-4 md:pl-10">
                     <h1 className="text-4xl md:text-6xl font-bold">Your <span className="text-green-400">Garden</span>, Our Priority...</h1>
                     <p className="text-2xl md:text-4xl w-3/4 mt-6 pl-2 italic text-white drop-shadow-lg font-satisfy">Welcome to a place where your outdoor oasis is our canvas, and every plant is a masterpiece.</p>
                     </div>
-                    <div className="mt-4 md:mt-10 ml-2 md:ml-16">
+                    <div className="mt-4 md:mt-10 ml-4 md:ml-16">
                         <button className="btn md:text-xl hover:text-black hover:bg-white mr-2">Check Services</button>
                         <button className="btn btn-outline hover:bg-white hover:text-black outline-4 md:text-xl text-white">Book Now</button>
                     </div>

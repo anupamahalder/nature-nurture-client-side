@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Navbar from './Navbar';
 import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 const MainLayout = ({children}) => {
     return (
         <div className='max-w-[1300px] mx-auto'>
@@ -11,6 +12,8 @@ const MainLayout = ({children}) => {
                 <Navbar></Navbar>
                 {/* Page content here */}
                 {children}
+                {/* footer section  */}
+                <Footer></Footer>
             </div> 
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 
