@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ServiceDetail = () => {
     const service = useLoaderData();
@@ -7,7 +9,29 @@ const ServiceDetail = () => {
 
     // create function to handle booking service 
     const handleServiceBook = () =>{
-        console.log('Booking button is clicked!')
+        console.log('Booking button is clicked!');
+        const currentDate = new Date();
+        console.log(currentDate);
+        const booking_date = currentDate;
+        axios.post('http://localhost:5000/api/v1/user/create-booking', service)
+        .then(data=>{
+            console.log(data.data);
+            if(data.data.insertedId){
+                Swal.fire(
+                    'Good Job',
+                    'You have successfully booked the service',
+                    'success'
+                )
+            }
+        })
+        .catch(err =>{
+            console.log(err.message);
+            Swal.fire(
+                'Sorry',
+                'Failed to book the service',
+                'error'
+            )
+        })
     }
     return (
         <div className="flex justify-center h-screen items-center px-10 mx-auto">
