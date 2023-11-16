@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Services from "./Services";
+import axios from "axios";
 
 const ServiceList = () => {
     // declare state to store service data 
@@ -7,12 +8,15 @@ const ServiceList = () => {
 
     // load services data 
     useEffect(()=>{
-        fetch('http://localhost:5000/api/v1/services')
-        .then(res=> res.json())
+        axios.get('http://localhost:5000/api/v1/services')
         .then(data =>{
-            setServices(data);
-            console.log(services);
+            setServices(data.data);
         })
+        // fetch('http://localhost:5000/api/v1/services')
+        // .then(res=> res.json())
+        // .then(data =>{
+        //     setServices(data);
+        // })
     },[]);
     return (
         

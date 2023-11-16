@@ -3,7 +3,12 @@ import { useLoaderData } from "react-router-dom";
 const ServiceDetail = () => {
     const service = useLoaderData();
     // destructure service object 
-    const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
+    const {_id,name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
+
+    // create function to handle booking service 
+    const handleServiceBook = () =>{
+        console.log('Booking button is clicked!')
+    }
     return (
         <div className="flex justify-center h-screen items-center px-10 mx-auto">
             <div className="flex gap-2">
@@ -22,7 +27,7 @@ const ServiceDetail = () => {
                 <h1><span className="font-bold text-xl">Guarantee:</span> {guarantee}</h1>
                 </div>
                 <div className="mx-auto mt-4 flex justify-center items-center">
-                <button
+                <button onClick={handleServiceBook}
                 className="btn bg-red-500 hover:bg-red-700 text-white"
                 type="button"
                 data-ripple-light="true">Book Now</button>
