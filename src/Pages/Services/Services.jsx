@@ -26,7 +26,6 @@ const Services = ({service}) => {
                 <button
                 className="btn bg-green-400 hover:bg-green-700 hover:text-white"
                 type="button"
-                data-ripple-light="true"
                 >
                 See Details
                 </button>

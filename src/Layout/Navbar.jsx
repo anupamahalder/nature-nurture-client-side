@@ -48,6 +48,10 @@ const Navbar = () => {
             className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-900" : ""}
             >Home</NavLink>
+            <NavLink to='/service' 
+            className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-red-900" : ""}
+            >Services</NavLink>
             <NavLink to='/bookings'
             className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-900" : ""}
