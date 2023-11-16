@@ -27,7 +27,7 @@ const MyRoute = createBrowserRouter([
                 element: <h1>Contact us</h1>
             },
             {
-                path: 'service/:id',
+                path: 'service-detail/:id',
                 element: <PrivateRoute><ServiceDetail></ServiceDetail></PrivateRoute>,
                 loader: ({params})=>fetch(`http://localhost:5000/api/v1/service-detail/${params.id}`)
             }

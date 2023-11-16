@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Services = ({service}) => {
     // destructure services 
-    const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
+    const {_id,name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
     return (
         <div className='mb-16 mx-auto'>
             <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-80 md:w-96 rounded-xl bg-clip-border">
@@ -21,13 +22,15 @@ const Services = ({service}) => {
                 <p className='font-bold p-2'>Price: ₹ {price}</p>
             </div>
             <div className="p-6 pt-0 mx-auto">
+                <Link to={`/service-detail/${_id}`}>
                 <button
                 className="btn bg-green-400 hover:bg-green-700 hover:text-white"
                 type="button"
                 data-ripple-light="true"
                 >
-                Book Now
+                See Details
                 </button>
+                </Link>
             </div>
             </div>
         </div>
