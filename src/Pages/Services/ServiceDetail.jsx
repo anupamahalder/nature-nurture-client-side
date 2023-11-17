@@ -10,16 +10,16 @@ const ServiceDetail = () => {
     const {user} = useAuth();
     const service = useLoaderData();
     // destructure service object 
-    const {_id,name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
+    const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
 
     // create function to handle booking service 
     const handleServiceBook = () =>{
         console.log('Booking button is clicked!');
         const currentDate = moment().format('MMMM Do YYYY, h:mm:ss a'); // November 17th 2023, 11:03:02 am
         // console.log(currentDate);
-        const userEmail = user.email;
+        const email = user.email;
         // console.log(userEmail);
-        const booking_data = {name,price,duration,image,availability,userEmail,currentDate};
+        const booking_data = {name,price,duration,image,availability,email,currentDate};
         console.log(booking_data);
         axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
         .then(data=>{
