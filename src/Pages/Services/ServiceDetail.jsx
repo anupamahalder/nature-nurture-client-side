@@ -1,8 +1,11 @@
 import axios from "axios";
+import moment from "moment";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const ServiceDetail = () => {
+    const {user} = useAuth();
     const service = useLoaderData();
     // destructure service object 
     const {_id,name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
@@ -10,10 +13,13 @@ const ServiceDetail = () => {
     // create function to handle booking service 
     const handleServiceBook = () =>{
         console.log('Booking button is clicked!');
-        const currentDate = new Date();
-        console.log(currentDate);
-        const booking_date = currentDate;
-        axios.post('http://localhost:5000/api/v1/user/create-booking', service)
+        const currentDate = moment().format('MMMM Do YYYY, h:mm:ss a'); // November 17th 2023, 11:03:02 am
+        // console.log(currentDate);
+        const userEmail = user.email;
+        // console.log(userEmail);
+        const booking_data = {...service,userEmail,currentDate};
+        console.log(booking_data);
+        axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
         .then(data=>{
             console.log(data.data);
             if(data.data.insertedId){
@@ -34,13 +40,13 @@ const ServiceDetail = () => {
         })
     }
     return (
-        <div className="flex justify-center h-screen items-center px-10 mx-auto">
-            <div className="flex gap-2">
+        <div className="flex justify-center md:h-screen items-center my-10 px-10 mx-auto">
+            <div className="md:flex py-10 md:py-0 md:gap-2">
             <div className="md:flex-1">
                 <img src={image} alt="" />
             </div>
             <div className="flex-1 pl-4">
-                <h1 className="font-bold text-3xl py-4">{name}</h1>
+                <h1 className="font-bold text-3xl py-4 md:pb-4 md:pt-0">{name}</h1>
                 <p className="text-gray-800 mb-4"><span className="font-bold text-xl">Description:</span> {description}</p>
                 <div className="space-y-1">
                 <h1><span className="font-bold text-xl">Price:</span> ${price}</h1>
