@@ -3,6 +3,8 @@ import moment from "moment";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const ServiceDetail = () => {
     const {user} = useAuth();
@@ -52,7 +54,9 @@ const ServiceDetail = () => {
                 <h1><span className="font-bold text-xl">Price:</span> ${price}</h1>
                 <h1><span className="font-bold text-xl">Duration:</span> {duration}</h1>
                 <h1><span className="font-bold text-xl">Availability:</span> {availability}</h1>
-                <h1><span className="font-bold text-xl">Rating:</span> {rating}</h1>
+                <h1 className="flex"><span className="font-bold text-xl">Rating:</span> 
+                    <Rating style={{ maxWidth: 120 }} className="pl-2" value={rating} readOnly />
+                </h1>
                 <h1><span className="font-bold text-xl">Reviews:</span> {reviews}</h1>
                 <h1><span className="font-bold text-xl">Guarantee:</span> {guarantee}</h1>
                 </div>
