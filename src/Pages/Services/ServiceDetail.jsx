@@ -19,7 +19,7 @@ const ServiceDetail = () => {
         // console.log(currentDate);
         const userEmail = user.email;
         // console.log(userEmail);
-        const booking_data = {...service,userEmail,currentDate};
+        const booking_data = {name,price,duration,image,availability,userEmail,currentDate};
         console.log(booking_data);
         axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
         .then(data=>{
