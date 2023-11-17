@@ -15,11 +15,11 @@ const ServiceDetail = () => {
     // create function to handle booking service 
     const handleServiceBook = () =>{
         console.log('Booking button is clicked!');
-        const currentDate = moment().format('MMMM Do YYYY, h:mm:ss a'); // November 17th 2023, 11:03:02 am
-        // console.log(currentDate);
+        const bookingDate = moment().format('MMMM Do YYYY'); // November 17th 2023, 11:03:02 am
+        const bookingTime = moment().format('LTS');  // 1:35:53 PM        
         const email = user.email;
         // console.log(userEmail);
-        const booking_data = {name,price,duration,image,availability,email,currentDate};
+        const booking_data = {name,price,duration,image,availability,email,bookingDate,bookingTime};
         console.log(booking_data);
         axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
         .then(data=>{
@@ -51,7 +51,7 @@ const ServiceDetail = () => {
                 <h1 className="font-bold text-3xl py-4 md:pb-4 md:pt-0">{name}</h1>
                 <p className="text-gray-800 mb-4"><span className="font-bold text-xl">Description:</span> {description}</p>
                 <div className="space-y-1">
-                <h1><span className="font-bold text-xl">Price:</span> ${price}</h1>
+                <h1><span className="font-bold text-xl">Price:</span> ₹ {price}</h1>
                 <h1><span className="font-bold text-xl">Duration:</span> {duration}</h1>
                 <h1><span className="font-bold text-xl">Availability:</span> {availability}</h1>
                 <h1 className="flex"><span className="font-bold text-xl">Rating:</span> 
