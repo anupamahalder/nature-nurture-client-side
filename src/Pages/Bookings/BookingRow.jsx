@@ -6,24 +6,33 @@ const BookingRow = ({booking}) => {
     const [bookingText, setBookingText] = useState("Please Confirm");
     // function 
     const handleConfirm =()=>{
-        Swal.fire({
-            title: "Are you sure to Confirm?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Confirm it!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-                setBookingText("Confirmed");
-              Swal.fire({
-                title: "Confirmed!",
-                text: "Your booking is confirmed now!",
-                icon: "success"
+        if(bookingText=="Please Confirm"){
+            Swal.fire({
+                title: "Are you sure to Confirm?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Confirm it!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    setBookingText("Confirmed");
+                  Swal.fire({
+                    title: "Confirmed!",
+                    text: "Your booking is confirmed now!",
+                    icon: "success"
+                  });
+                }
               });
-            }
-          });
+        }
+        else{
+            Swal.fire({
+                title: "Already confirmed the booking!",
+                text: "",
+                icon: 'info'
+            })
+        }
     }
     return (
         <tr>
