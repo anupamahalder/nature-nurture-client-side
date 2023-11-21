@@ -5,10 +5,8 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import DatePick from "../../components/DatePick";
 
 
 const ServiceDetail = () => {
