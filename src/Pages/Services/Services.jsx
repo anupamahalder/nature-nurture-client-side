@@ -24,7 +24,7 @@ const Services = ({service}) => {
             <div className="p-6 pt-0 mx-auto">
                 <Link to={`/service-detail/${_id}`}>
                 <button
-                className="btn bg-[#0bf446] hover:bg-green-700 hover:text-white"
+                className="btn bg-[#0bf446] hover:bg-green-600 hover:scale-105 hover:text-white"
                 type="button"
                 >
                 See Details

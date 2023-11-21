@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 const BookingRow = ({booking}) => {
-    const {name,price,serviceDate,duration,image,availability,email,bookingTime,bookingDate} = booking;
+    const {name,price,serviceDate,image,bookingTime,bookingDate} = booking;
     const [bookingText, setBookingText] = useState("Please Confirm");
     // function 
     const handleConfirm =()=>{
