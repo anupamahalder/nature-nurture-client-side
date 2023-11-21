@@ -15,7 +15,7 @@ const Navbar = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, Log Out!"
           }).then((result) => {
-            if (result.isConfirmed) {
+            if (result.isConfirmed){
                 logOut()
                 .then(res => {
                     console.log(res.user);
@@ -67,7 +67,7 @@ const Navbar = () => {
                 className="uppercase"
                 >SignOut</button>
                 {
-                    user?.photoURL && <img className="w-10 rounded-full" src={user?.photoURL}></img>
+                    user?.photoURL && <div title={user?.displayName}><img className="w-10 rounded-full" src={user?.photoURL}></img></div>
                 }</>
                 :
                 <NavLink to='/login'

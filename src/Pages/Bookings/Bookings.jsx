@@ -19,17 +19,17 @@ const Bookings = () => {
     },[]);
     return (
         <div className="mx-auto px-2 my-20 min-h-screen">
-            <h1 className="font-bold text-center text-2xl text-[#003C25]">Total Booked Services: {bookedItems.length}</h1>
+            <h1 className="font-bold text-center mb-6 text-2xl text-[#003C25]">Total Booked Services: {bookedItems.length}</h1>
             <div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
                     <thead>
-                    <tr>
+                    <tr className="text-sm">
                         <th>Service Image</th>
                         <th>Service Name</th>
-                        <th>Price</th>
                         <th>Booking Date</th>
+                        <th>Price</th>
                         <th>Service Available Date</th>
                         <th>Satus</th>
                     </tr>

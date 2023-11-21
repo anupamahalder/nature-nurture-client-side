@@ -3,17 +3,24 @@ import moment from "moment";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import { Rating } from '@smastrom/react-rating'
-import '@smastrom/react-rating/style.css'
+import { Rating } from '@smastrom/react-rating';
+import '@smastrom/react-rating/style.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+
 
 const ServiceDetail = () => {
     const {user} = useAuth();
     const service = useLoaderData();
+    const [startDate, setStartDate] = useState(new Date());
+
     // destructure service object 
     const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
 
     // create function to handle booking service 
     const handleServiceBook = () =>{
+        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         console.log('Booking button is clicked!');
         const bookingDate = moment().format('MMMM Do YYYY'); // November 17th 2023, 11:03:02 am
         const bookingTime = moment().format('LTS');  // 1:35:53 PM        
