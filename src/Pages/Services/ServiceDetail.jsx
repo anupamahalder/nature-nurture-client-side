@@ -8,12 +8,12 @@ import '@smastrom/react-rating/style.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import DatePick from "../../components/DatePick";
 
 
 const ServiceDetail = () => {
     const {user} = useAuth();
     const service = useLoaderData();
-    const [startDate, setStartDate] = useState(new Date());
 
     // destructure service object 
     const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
@@ -22,8 +22,6 @@ const ServiceDetail = () => {
 
     // create function to handle booking service 
     const handleServiceBook = () =>{
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-
         Swal.fire({
             title: "Are you sure to Confirm?",
             text: "You won't be able to revert this!",
@@ -38,32 +36,48 @@ const ServiceDetail = () => {
                 const bookingTime = moment().format('LTS');  // 1:35:53 PM        
                 const email = user.email;
                 // ---------------date picker------------
-
-                
-                console.log(serviceDate);
-                if(serviceDate != ''){
-                    const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
-                    console.log(booking_data);
-                    axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
-                    .then(data=>{
-                        console.log(data.data);
-                        if(data.data.insertedId){
-                            Swal.fire({
-                                title: "Booking Successful!",
-                                text: "You have successfully booked the service",
-                                icon: "success"
-                            });
-                        }
-                    })
-                    .catch(err =>{
-                        console.log(err.message);
-                        Swal.fire(
-                            'Sorry',
-                            'Failed to book the service',
-                            'error'
-                        )
-                    })
+                // Get the current date
+                const currentDate = new Date().toISOString().split('T')[0];
+                Swal.fire({
+                    title: "Select Date to take Service",
+                    input: "date",
+                    showCancelButton: true,
+                    confirmButtonText: "Done",
+                    // Set the minimum selectable date to the current date
+                    inputAttributes: {
+                        min: currentDate
+                    }
+                }).then((result) => {
+                    console.log(result.value);
+                    /* Read more about isConfirmed, isDenied below */
+                    if(result.isConfirmed) {
+                        setServiceDate(result?.value);
+                       console.log(serviceDate);
+                       if(serviceDate){
+                        const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
+                        console.log(booking_data);
+                        axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
+                        .then(data=>{
+                            console.log(data.data);
+                            if(data.data.insertedId){
+                                Swal.fire({
+                                    title: "Booking Successful!",
+                                    text: "You have successfully booked the service",
+                                    icon: "success"
+                                });
+                            }
+                        })
+                        .catch(err =>{
+                            console.log(err.message);
+                            Swal.fire(
+                                'Sorry',
+                                'Failed to book the service',
+                                'error'
+                            )
+                        })
+                    }
                 }
+                })
             }
         });
     }
