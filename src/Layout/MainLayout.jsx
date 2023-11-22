@@ -13,9 +13,7 @@ const MainLayout = ({children}) => {
                 {/* Page content here */}
                 {children}
                 {/* footer section  */}
-                <div className='relative'>
-                <Footer className='absolute bottom-0'></Footer>
-                </div>
+                <Footer></Footer>
             </div> 
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 

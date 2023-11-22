@@ -38,7 +38,7 @@ const Navbar = () => {
         </div> 
         <div className="flex-1 px-2 mx-2 absolute right-1 md:relative">
             <img className='w-[50px]'
-                src="./../../public/natureLight.png" alt="" />
+                src="/natureLight.png" alt="" />
             <h1 className='font-extrabold ml-2 text-3xl font-dancingScript'>Nature Nurture</h1>
         </div>
         <div className="flex-none hidden lg:block">

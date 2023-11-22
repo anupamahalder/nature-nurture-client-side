@@ -16,8 +16,6 @@ const ServiceDetail = () => {
     const navigate = useNavigate();
     // destructure service object 
     const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
-    const [serviceDate, setServiceDate] = useState('');
-
 
     // create function to handle booking service 
     const handleServiceBook = () =>{
@@ -46,16 +44,14 @@ const ServiceDetail = () => {
                     inputAttributes: {
                         min: currentDate
                     }
-                }).then((result) => {
+                }).then(async(result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if(result.isConfirmed) {
-                        if(result?.value){
-                            setServiceDate(result?.value);
-                        }
-                        else{
-                            setServiceDate(currentDate);
-                        }
-                    //    console.log('hello',serviceDate);
+                        const inputDate = result?.value;
+                        console.log('date value' ,inputDate);
+                        const serviceDate = inputDate || currentDate;
+                        
+                        console.log('hello',serviceDate);
                         const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
                         console.log(booking_data);
                         axios.post('https://nature-nurture-server-side.vercel.app/api/v1/user/create-booking', booking_data)
