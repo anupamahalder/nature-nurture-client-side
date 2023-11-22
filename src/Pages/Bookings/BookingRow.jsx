@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 const BookingRow = ({booking,hanldeRemoveBtn}) => {
     const {_id,name,price,serviceDate,image,bookingTime,bookingDate} = booking;
     const [bookingText, setBookingText] = useState("Please Confirm");
+
     // function 
     const handleConfirm =()=>{
         if(bookingText=="Please Confirm"){
@@ -48,7 +49,7 @@ const BookingRow = ({booking,hanldeRemoveBtn}) => {
             <td>{name}</td>
             <td>{bookingDate}<br/>{bookingTime}</td>
             <td>₹ {price}</td>
-            <td>{serviceDate || bookingDate}</td>
+            <td>{serviceDate}</td>
             <td>
                 {
                     bookingText=="Please Confirm" ? <button onClick={handleConfirm}

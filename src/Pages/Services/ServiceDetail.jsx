@@ -47,11 +47,15 @@ const ServiceDetail = () => {
                         min: currentDate
                     }
                 }).then((result) => {
-                    console.log(result.value);
                     /* Read more about isConfirmed, isDenied below */
                     if(result.isConfirmed) {
-                        setServiceDate(result?.value || currentDate);
-                       console.log(serviceDate);
+                        if(result?.value){
+                            setServiceDate(result?.value);
+                        }
+                        else{
+                            setServiceDate(currentDate);
+                        }
+                    //    console.log('hello',serviceDate);
                         const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
                         console.log(booking_data);
                         axios.post('https://nature-nurture-server-side.vercel.app/api/v1/user/create-booking', booking_data)
