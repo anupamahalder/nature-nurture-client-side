@@ -37,7 +37,7 @@ const MyRoute = createBrowserRouter([
             {
                 path: 'service-detail/:id',
                 element: <PrivateRoute><ServiceDetail></ServiceDetail></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:5000/api/v1/service-detail/${params.id}`)
+                loader: ({params})=>fetch(`https://nature-nurture-server-side.vercel.app/api/v1/service-detail/${params.id}`)
             }
         ]
     },

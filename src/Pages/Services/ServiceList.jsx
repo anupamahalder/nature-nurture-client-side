@@ -8,7 +8,7 @@ const ServiceList = () => {
 
     // load services data 
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/v1/services')
+        axios.get('https://nature-nurture-server-side.vercel.app/api/v1/services')
         .then(data =>{
             setServices(data.data);
         })

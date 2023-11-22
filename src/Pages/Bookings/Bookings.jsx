@@ -9,7 +9,7 @@ const Bookings = () => {
     // declare a state to store bookings data 
     const [bookedItems, setBookedItems] = useState([]);
     // set a dynamic url 
-    const url = `http://localhost:5000/api/v1/bookings-data?email=${user?.email}`;
+    const url = `https://nature-nurture-server-side.vercel.app/bookings-data?email=${user?.email}`;
     // load data 
     useEffect(()=>{
         axios.get(url)

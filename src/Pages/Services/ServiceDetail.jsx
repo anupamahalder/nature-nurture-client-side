@@ -54,7 +54,7 @@ const ServiceDetail = () => {
                        if(serviceDate){
                         const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
                         console.log(booking_data);
-                        axios.post('http://localhost:5000/api/v1/user/create-booking', booking_data)
+                        axios.post('https://nature-nurture-server-side.vercel.app/user/create-booking', booking_data)
                         .then(data=>{
                             console.log(data.data);
                             if(data.data.insertedId){
