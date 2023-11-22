@@ -1,18 +1,19 @@
 import axios from "axios";
 import moment from "moment";
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 
 const ServiceDetail = () => {
     const {user} = useAuth();
     const service = useLoaderData();
-
+    const navigate = useNavigate();
     // destructure service object 
     const {name,description,price,duration,availability,rating,reviews,guarantee,image} = service;
     const [serviceDate, setServiceDate] = useState('');
@@ -54,7 +55,7 @@ const ServiceDetail = () => {
                        if(serviceDate){
                         const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
                         console.log(booking_data);
-                        axios.post('https://nature-nurture-server-side.vercel.app/user/create-booking', booking_data)
+                        axios.post('https://nature-nurture-server-side.vercel.app/api/v1/user/create-booking', booking_data)
                         .then(data=>{
                             console.log(data.data);
                             if(data.data.insertedId){
@@ -79,14 +80,19 @@ const ServiceDetail = () => {
             }
         });
     }
+
     return (
-        <div className="flex justify-center md:h-screen items-center my-10 px-10 mx-auto">
+        <div className="relative">
+        <div className="absolute top-10 left-10">
+            <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-gray-400 cursor-pointer text-3xl"></FaArrowLeftLong>
+            </div>
+        <div className="flex justify-center md:h-screen items-center my-12 px-10 mx-auto">
             <div className="md:flex py-10 md:py-0 md:gap-2">
             <div className="md:flex-1">
                 <img src={image} alt="" />
             </div>
             <div className="flex-1 pl-4">
-                <h1 className="font-bold text-3xl py-4 md:pb-4 md:pt-0">{name}</h1>
+                <h1 className="font-bold text-2xl md:text-3xl py-4 md:pb-4 md:pt-0">{name}</h1>
                 <p className="text-gray-800 mb-4"><span className="font-bold text-xl">Description:</span> {description}</p>
                 <div className="space-y-1">
                 <h1><span className="font-bold text-xl">Price:</span> ₹ {price}</h1>
@@ -106,6 +112,7 @@ const ServiceDetail = () => {
                 </div>
             </div>
             </div>
+        </div>
         </div>
     );
 };
