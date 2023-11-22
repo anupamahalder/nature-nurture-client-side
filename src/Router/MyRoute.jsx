@@ -10,11 +10,13 @@ import Bookings from "../Pages/Bookings/Bookings";
 import ServiceDetail from "../Pages/Services/ServiceDetail";
 import ServicePage from "../Pages/Services/ServicePage";
 import ContactUs from "../components/ContactUs";
+import ErrorPage from "../components/ErrorPage";
 
 const MyRoute = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout><Outlet></Outlet></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
