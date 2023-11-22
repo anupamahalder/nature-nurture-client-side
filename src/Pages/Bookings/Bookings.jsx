@@ -75,7 +75,7 @@ const Bookings = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                    <tr className="text-sm">
+                    <tr className="text-sm text-center">
                         <th>Service Image</th>
                         <th>Service Name</th>
                         <th>Booking Date</th>

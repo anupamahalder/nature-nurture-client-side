@@ -6,7 +6,6 @@ import useAuth from "../../hooks/useAuth";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 

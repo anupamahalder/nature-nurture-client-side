@@ -38,7 +38,7 @@ const BookingRow = ({booking,hanldeRemoveBtn}) => {
         }
     }
     return (
-        <tr>
+        <tr className='text-center'>
             <td>
                 <div className="flex items-center gap-3">
                     <div className="w-28">
