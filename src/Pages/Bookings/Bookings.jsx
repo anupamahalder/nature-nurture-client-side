@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import BookingRow from "./BookingRow";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 
 const Bookings = () => {
     const {user} = useAuth();
@@ -17,7 +18,35 @@ const Bookings = () => {
             console.log(data.data);
             setBookedItems(data.data);
         })
-    },[]);
+    },[url]);
+    // function 
+    const hanldeRemoveBtn = (id) =>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to delete it?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('Remove button is clicked!',id);
+                axios.delete(`https://nature-nurture-server-side.vercel.app/api/v1/user/delete-booking/${id}`)
+                .then(data=>{
+                    console.log(data.data);
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Successfully deleted the service",
+                        icon: "success"
+                    });
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+            }
+          });
+    }
     return (
         <div className="mx-auto px-2 my-20 min-h-screen">
             <Helmet>
@@ -36,12 +65,13 @@ const Bookings = () => {
                         <th>Price</th>
                         <th>Service Available Date</th>
                         <th>Satus</th>
+                        <th>Remove</th>
                     </tr>
                     </thead>
                     <tbody>
                     {/* row */}
                     {
-                        bookedItems.map(booking=><BookingRow key={booking._id} booking={booking}></BookingRow>)
+                        bookedItems.map(booking=><BookingRow key={booking._id} hanldeRemoveBtn={hanldeRemoveBtn} booking={booking}></BookingRow>)
                     }
                     </tbody>        
                 </table>

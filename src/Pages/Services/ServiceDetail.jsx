@@ -1,6 +1,6 @@
 import axios from "axios";
 import moment from "moment";
-import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { Rating } from '@smastrom/react-rating';
@@ -32,7 +32,7 @@ const ServiceDetail = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 const bookingDate = moment().format('MMMM Do YYYY'); // November 17th 2023, 11:03:02 am
-                const bookingTime = moment().format('LTS');  // 1:35:53 PM        
+                const bookingTime = moment().format('LTS');  // 1:35:53 PM     
                 const email = user.email;
                 // ---------------date picker------------
                 // Get the current date
@@ -50,9 +50,8 @@ const ServiceDetail = () => {
                     console.log(result.value);
                     /* Read more about isConfirmed, isDenied below */
                     if(result.isConfirmed) {
-                        setServiceDate(result?.value);
+                        setServiceDate(result?.value || currentDate);
                        console.log(serviceDate);
-                       if(serviceDate){
                         const booking_data = {name, serviceDate,price,duration,image,availability,email,bookingDate,bookingTime};
                         console.log(booking_data);
                         axios.post('https://nature-nurture-server-side.vercel.app/api/v1/user/create-booking', booking_data)
@@ -74,7 +73,6 @@ const ServiceDetail = () => {
                                 'error'
                             )
                         })
-                    }
                 }
                 })
             }

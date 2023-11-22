@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-const BookingRow = ({booking}) => {
-    const {name,price,serviceDate,image,bookingTime,bookingDate} = booking;
+import { MdDelete } from "react-icons/md";
+
+const BookingRow = ({booking,hanldeRemoveBtn}) => {
+    const {_id,name,price,serviceDate,image,bookingTime,bookingDate} = booking;
     const [bookingText, setBookingText] = useState("Please Confirm");
     // function 
     const handleConfirm =()=>{
@@ -47,20 +49,24 @@ const BookingRow = ({booking}) => {
             <td>{bookingDate}<br/>{bookingTime}</td>
             <td>₹ {price}</td>
             <td>{serviceDate || bookingDate}</td>
-                <th>
-                    {
-                       bookingText=="Please Confirm" ? <button onClick={handleConfirm}
-                        className="btn btn-ghost btn-xs text-red-600">{
-                        bookingText}</button> : <button onClick={handleConfirm}
-                        className="btn btn-ghost btn-xs text-green-600">{
-                        bookingText}</button>
-                    }
-                </th>
+            <td>
+                {
+                    bookingText=="Please Confirm" ? <button onClick={handleConfirm}
+                    className="btn btn-ghost btn-xs text-red-600">{
+                    bookingText}</button> : <button onClick={handleConfirm}
+                    className="btn btn-ghost btn-xs text-green-600">{
+                    bookingText}</button>
+                }
+            </td>
+            <td>
+                <button><MdDelete onClick={()=>hanldeRemoveBtn(_id)} className='text-2xl mx-auto text-blue-800'></MdDelete></button>
+            </td>
             </tr>
     );
 };
 // Added proptypes 
 BookingRow.propTypes={
     booking: PropTypes.object.isRequired,
+    hanldeRemoveBtn: PropTypes.func,
 }
 export default BookingRow;
