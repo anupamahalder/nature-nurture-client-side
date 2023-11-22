@@ -73,7 +73,7 @@ const ServiceDetail = () => {
                             console.log(err.message);
                             Swal.fire(
                                 'Sorry',
-                                'Failed to book the service',
+                                'Failed to delete the service',
                                 'error'
                             )
                         })

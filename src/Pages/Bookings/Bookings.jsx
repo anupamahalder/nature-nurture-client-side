@@ -35,14 +35,31 @@ const Bookings = () => {
                 axios.delete(`https://nature-nurture-server-side.vercel.app/api/v1/user/delete-booking/${id}`)
                 .then(data=>{
                     console.log(data.data);
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Successfully deleted the service",
-                        icon: "success"
-                    });
+                    if(data.data.deletedCount>0){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Successfully deleted the service",
+                            icon: "success"
+                        });
+                        // set updated booking service 
+                        const updatedService = bookedItems.filter(bookedItem => bookedItem._id != id);
+                        setBookedItems(updatedService);
+                    }
+                    else{
+                        Swal.fire({
+                            title: "Sorry!",
+                            text: "Failed to delete the service",
+                            icon: "error"
+                        });
+                    }
                 })
                 .catch(err => {
                     console.log(err.message);
+                    Swal.fire({
+                        title: "Sorry!",
+                        text: "Failed to delete the service",
+                        icon: "error"
+                    });
                 })
             }
           });
