@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     // call the custom hook to get all authcontext's info
@@ -27,6 +28,9 @@ const Register = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Nature Nurture | Register</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center mb-6">

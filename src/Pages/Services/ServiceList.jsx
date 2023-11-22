@@ -12,11 +12,6 @@ const ServiceList = () => {
         .then(data =>{
             setServices(data.data);
         })
-        // fetch('http://localhost:5000/api/v1/services')
-        // .then(res=> res.json())
-        // .then(data =>{
-        //     setServices(data);
-        // })
     },[]);
     return (
         

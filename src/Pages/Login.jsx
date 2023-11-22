@@ -4,9 +4,10 @@ import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 const Login = () => {
     // call the custom hook to get all authcontext's info
-    const {user, signInUser, googleLogin} = useAuth();
+    const { signInUser, googleLogin} = useAuth();
      // declare a state to track the visibility of password 
      const [isVisible, setIsVisible] = useState(false);
     //  declare states to store email and password 
@@ -44,6 +45,9 @@ const Login = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Nature Nurture | Login</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center mb-6">

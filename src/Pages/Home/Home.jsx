@@ -1,12 +1,16 @@
 import ImageGallery from "../../components/ImageGallery";
 import Banner from "../../components/Banner";
 import AboutUs from "../../components/AboutUs";
-import ServicePage from "../Services/ServicePage";
 import Testimonials from "../../components/Testimonials";
+import {Helmet} from "react-helmet";
+import ServiceList from "../Services/ServiceList";
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Nature Nurture | Home</title>
+            </Helmet>
             {/* banner section  */}
             <Banner></Banner>
             {/* image showcase  */}
@@ -19,7 +23,7 @@ const Home = () => {
             {/* service section  */}
             <div className="md:my-10 px-2 mx-auto">
                 <h1 className="text-center text-3xl md:text-4xl font-bold font-satisfy my-20">Nature Nurture Services</h1>
-                <ServicePage></ServicePage> 
+                <ServiceList></ServiceList>
             </div>
             {/* Testimonial section     */}
             <div className="md:mt-10 mb-20 px-2 mx-auto">

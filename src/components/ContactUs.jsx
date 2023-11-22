@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 
 const ContactUs = () => {
@@ -16,6 +17,9 @@ const ContactUs = () => {
     }
     return (
         <div className="min-h-[90vh] my-10 mx-auto flex justify-center items-center">
+            <Helmet>
+                <title>Nature Nurture | Contact Us</title>
+            </Helmet>
             {/* Contact us with form and map */}
             <div className="">
             <div className="md:flex gap-6 justify-around mx-auto px-4">
